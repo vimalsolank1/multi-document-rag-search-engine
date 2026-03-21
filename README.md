@@ -15,8 +15,9 @@ from your documents and live web search - built with LangChain, FAISS, and Strea
 
 ## 🎥 Demo & Explanation
 
-- 🖥️ **Live Demo:** [Add Streamlit Cloud link here]
-- 📹 **Video Explanation:** [Add YouTube/Loom link here]
+
+- 🖥️ **Live Demo:** [multi-document-rag-ai-chatbot.streamlit.app](https://multi-document-rag-ai-chatbot.streamlit.app/)
+- 📹 **Video Explanation:** Coming soon
 
 ---
 
