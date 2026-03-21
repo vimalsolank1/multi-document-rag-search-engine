@@ -8,7 +8,7 @@ from your documents and live web search - built with LangChain, FAISS, and Strea
 ## 👤 Author
 
 - **Name:** Vimal solanki
-- **Email:** your@email.com
+- **Email:** vimal162002@email.com
 
 
 ---
