@@ -77,7 +77,7 @@ multi-document-rag-search-engine/
 
 ## 🔄 How It Works — Architecture
 
-![RAG pipeline workflow showing two phases: Phase 1 ingestion with document upload, text cleaning, chunking, embedding generation, and FAISS storage; Phase 2 query processing with user question embedding, retrieval mode selection between Doc/Web/Hybrid options, context building, RAG prompt construction, LLaMA 3.3 70B LLM inference via Groq API, and final answer display with citations in Streamlit chat interface](architecture-diagram.png)
+![Architecture](architecture.png)
 ---
 
 ### 🧠 Component Roles
