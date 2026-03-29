@@ -25,6 +25,8 @@ def main():
 
     Streamlit reruns this entire function on every user interaction,
     so session state is used to persist data between reruns.
+    
+    it Handles user interaction, manages UI flow, and communicates with the backend.
     """
 
     # Set up session state defaults on first load
@@ -74,7 +76,7 @@ def main():
             with st.spinner("Processing documents..."):
                 chunk_count = chat_interface.process_uploaded_files(uploaded_files)
 
-            st.success(f"Indexed {chunk_count} chunks")
+            st.success(f"Documents processed successfully. {chunk_count} sections are ready for search.")
 
     st.divider()
 
@@ -110,11 +112,9 @@ def main():
 
         # Save completed response with sources to chat history
         add_message(
-            "assistant",
-            full_response,
-            chat_interface.get_sources(user_query, retrieval_mode)
-        )
-
+                "assistant",
+                full_response,
+                st.session_state.last_answer_meta)
         # Show answer type and sources below the response
         display_answer_metadata()
 

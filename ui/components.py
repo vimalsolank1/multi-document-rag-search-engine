@@ -36,33 +36,53 @@ def display_chat_history():
     """
     Render all previous messages from session state in the chat UI.
 
-    Also shows source references under each assistant message.
+    Also shows structured sources under each assistant message.
     """
     for message in st.session_state.messages:
 
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-            # Show sources if this message has them
-            if message.get("sources"):
+            # Show sources using metadata
+            if message.get("metadata"):
+                meta = message["metadata"]
+
                 with st.expander("📚 Sources"):
-                    for source in message["sources"]:
-                        st.write(f"- {source}")
 
+                    if not meta.get("doc_chunks") and not meta.get("web_docs"):
+                        st.write("No sources available")
+                        continue
 
-def add_message(role: str, content: str, sources: List[str] = None):
+                    # Document sources
+                    doc_sources = {
+                        doc.metadata.get("source")
+                        for doc in meta.get("doc_chunks", [])
+                    }
+
+                    for src in doc_sources:
+                        st.write(f"📄 {src}")
+
+                    # Web sources with URL
+                    for web in meta.get("web_docs", []):
+                        title = web.metadata.get("title", "Unknown")
+                        url = web.metadata.get("source", "")
+
+                        st.markdown(f"🌐 **{title}**")
+                        st.markdown(f"[🔗 Open Source]({url})")
+
+def add_message(role: str, content: str, metadata=None):
     """
     Append a message to the chat history in session state.
 
     Args:
         role: "user" or "assistant"
         content: The message text to display
-        sources: Optional list of source references for the answer
+        metadata: Optional metadata for sources (doc_chunks, web_docs, etc.)
     """
     message = {"role": role, "content": content}
 
-    if sources:
-        message["sources"] = sources
+    if metadata:
+        message["metadata"] = metadata
 
     st.session_state.messages.append(message)
 
@@ -205,15 +225,12 @@ This chatbot can:
 def display_answer_metadata():
     """
     Show answer type indicator and sources used for the last response.
-
-    Displayed below the assistant's answer after each query.
     """
     meta = st.session_state.get("last_answer_meta")
 
     if not meta:
         return
 
-    # Show which mode generated this answer
     indicator = {
         "doc": "📄 Answer from documents",
         "web": "🌐 Answer from web search",
@@ -228,7 +245,7 @@ def display_answer_metadata():
             st.write("No sources available")
             return
 
-        # Use set to avoid showing duplicate file names
+        # Document sources
         doc_sources = {
             doc.metadata.get("source")
             for doc in meta.get("doc_chunks", [])
@@ -237,15 +254,13 @@ def display_answer_metadata():
         for src in doc_sources:
             st.write(f"📄 {src}")
 
-        # Use set to avoid showing duplicate web titles
-        web_sources = {
-            web.metadata.get("title", "Unknown")
-            for web in meta.get("web_docs", [])
-        }
+        # Web sources with URL
+        for web in meta.get("web_docs", []):
+            title = web.metadata.get("title", "Unknown")
+            url = web.metadata.get("source", "")
 
-        for src in web_sources:
-            st.write(f"🌐 {src}")
-
+            st.markdown(f"🌐 **{title}**")
+            st.markdown(f"[🔗 Open Source]({url})")
 
 # ---------------------------------------------------
 # STATUS MESSAGES

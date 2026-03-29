@@ -77,6 +77,7 @@ multi-document-rag-search-engine/
 
 ## 🔄 How It Works — Architecture
 
+
 <img width="1410" height="3276" alt="Image" src="https://github.com/user-attachments/assets/94c34a2b-897a-41ec-b001-84eb6dae128a" />
 
 ### 🧠 Component Roles

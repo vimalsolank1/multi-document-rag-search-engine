@@ -10,16 +10,14 @@ from core.embedding import EmbeddingManager
 
 class VectorStoreManager:
     """
-    Manages the FAISS vector database for semantic document search.
-
-    FAISS (Facebook AI Similarity Search) stores document embeddings
-    and lets us find the most relevant chunks for any query - very fast!
+    This class manages the FAISS vector database for storing embeddings and performing semantic search on document chunks.
 
     Responsibilities:
     - Build vector index from uploaded documents
     - Add new documents to existing index
     - Search for similar documents by query
     - Save and load index from disk
+    
     """
 
     def __init__(self, embedding_manager: EmbeddingManager = None):
@@ -139,7 +137,7 @@ class VectorStoreManager:
         Same as search() but also returns similarity scores.
 
         Score is L2 distance - lower means more similar.
-        Used in chat.py to filter out irrelevant results by threshold.
+        Used in chat interface to filter out irrelevant results by threshold.
 
         Args:
             query: User's question or search text
