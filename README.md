@@ -17,20 +17,33 @@ from your documents and live web search - built with LangChain, FAISS, and Strea
 
 
 - 🖥️ **Live Demo:** [multi-document-rag-ai-chatbot.streamlit.app](https://multi-document-rag-ai-chatbot.streamlit.app/)
-- 📹 **Video Explanation:** Coming soon
+
+- 📹 **Video Explanation:** [Watch here](https://drive.google.com/file/d/1E_5fXD9SDdZIvhdY_1XVXMDZfePXj4j9/view?usp=sharing)
+
+<img width="1915" height="1038" alt="Image" src="https://github.com/user-attachments/assets/10ffa4e0-3f83-4cd6-9067-844243b135a8" />
 
 ---
 
+
 ## 📌 Project Overview
 
-Organizations store knowledge across multiple documents like PDFs and reports.
-But static documents alone are not enough — users also need real-time information.
+Organizations usually store knowledge across multiple unstructured documents like PDFs, reports, and notes.  
+However, these documents are static and do not contain real-time information.
+
+This creates a gap where users need both internal knowledge and up-to-date data.
+
+To solve this problem, I built a hybrid RAG chatbot that combines document retrieval with live web search.
+
+This system can:
+- 📄 Search across multiple documents at the same time  
+- 🌐 Fetch real-time information from the web  
+- 🔀 Combine both sources intelligently  
+- 📌 Clearly distinguish between document-based and real-time answers  
 
 This project solves that by combining:
 - 📄 Multi-document semantic search (your private files)
 - 🌐 Live web search via Tavily (real-time facts)
 - 🔀 Hybrid mode (both combined)
-
 ---
 
 ## ⚙️ Tech Stack
